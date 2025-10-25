@@ -130,7 +130,7 @@
   top: 50%;
   transform: translateY(-50%);
   height: 4px;
-  background: #00adef;
+  background: #fff;
   border-radius: 2px;
   width: 0%;
   transition: height 0.2s ease;
@@ -146,7 +146,7 @@
   transform: translate(-50%, -50%);
   width: 14px;
   height: 14px;
-  background: #00adef;
+  background: #fff;
   border-radius: 50%;
   left: 0%;
   opacity: 0;
@@ -302,7 +302,7 @@ button svg {
   width: 48px;
   height: 48px;
   border: 4px solid rgba(255, 255, 255, 0.2);
-  border-top-color: #00adef;
+  border-top-color: #fff;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
