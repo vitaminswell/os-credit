@@ -120,7 +120,7 @@
   top: 50%;
   transform: translateY(-50%);
   width: 100%;
-  height: 4px;
+  height: 2px;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 2px;
 }
@@ -129,7 +129,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  height: 4px;
+  height: 2px;
   background: #fff;
   border-radius: 2px;
   width: 0%;
@@ -239,7 +239,7 @@ button svg {
   bottom: 0;
   width: 100%;
   height: 100%;
-  background: #00adef;
+  background: #fff;
   border-radius: 2px;
 }
 
