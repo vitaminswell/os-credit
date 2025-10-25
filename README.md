@@ -4,25 +4,39 @@ A custom, lightweight video player for playing Vimeo videos in HLS format within
 
 ## CDN Installation
 
-### Using jsDelivr (Recommended)
+### Option 1: GitHub Pages (Easiest & Most Reliable)
 
-Add this script to your Webflow project:
+Simply use this URL in your Webflow project:
 
 ```html
-<!-- Latest version -->
-<script src="https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@latest/dist/vimeo-hls-player.js"></script>
-
-<!-- Specific version (recommended for production) -->
-<script src="https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@1.0.0/dist/vimeo-hls-player.js"></script>
+<script src="https://vitaminswell.github.io/os-credit/dist/vimeo-hls-player.js"></script>
 ```
 
-### CDN Options
+**Setup GitHub Pages** (one-time):
+1. Go to: https://github.com/vitaminswell/os-credit/settings/pages
+2. Source: "Deploy from a branch"
+3. Branch: Select `main` and folder `/ (root)`
+4. Click "Save"
+5. Wait 2-3 minutes for deployment
 
-| CDN | URL | Notes |
-|-----|-----|-------|
-| **jsDelivr** | `https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@latest/dist/vimeo-hls-player.js` | Recommended - Fast, reliable, free |
-| **unpkg** | `https://unpkg.com/vimeo-hls-player@1.0.0/dist/vimeo-hls-player.js` | Alternative (requires npm package) |
-| **GitHub Pages** | Self-hosted via GitHub Pages | Requires setup |
+### Option 2: jsDelivr CDN
+
+```html
+<!-- Using version tag (recommended for production) -->
+<script src="https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@1.0.0/dist/vimeo-hls-player.js"></script>
+
+<!-- Using main branch (always latest) -->
+<script src="https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@main/dist/vimeo-hls-player.js"></script>
+```
+
+**Important**: Make sure the git tag is named exactly `v1.0.0` (not `v.1.0.0`)
+
+### CDN Comparison
+
+| CDN | URL | Pros | Cons |
+|-----|-----|------|------|
+| **GitHub Pages** | `https://vitaminswell.github.io/os-credit/dist/vimeo-hls-player.js` | ✅ Simple, reliable, no tag needed | ⚠️ Slower than edge CDN |
+| **jsDelivr** | `https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@1.0.0/dist/vimeo-hls-player.js` | ✅ Fast global CDN, caching | ⚠️ Requires correct tag naming |
 
 ## Features
 
@@ -43,7 +57,7 @@ Add this script to your Webflow project:
 Add the CDN script to your Webflow project (Project Settings > Custom Code):
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@latest/dist/vimeo-hls-player.js"></script>
+<script src="https://vitaminswell.github.io/os-credit/dist/vimeo-hls-player.js"></script>
 ```
 
 ### 2. Create a Container
