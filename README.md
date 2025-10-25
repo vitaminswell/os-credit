@@ -2,12 +2,33 @@
 
 A custom, lightweight video player for playing Vimeo videos in HLS format within Webflow projects. This player provides full control over the video playback experience with custom styling and controls.
 
+## CDN Installation
+
+### Using jsDelivr (Recommended)
+
+Add this script to your Webflow project:
+
+```html
+<!-- Latest version -->
+<script src="https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@latest/dist/vimeo-hls-player.js"></script>
+
+<!-- Specific version (recommended for production) -->
+<script src="https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@1.0.0/dist/vimeo-hls-player.js"></script>
+```
+
+### CDN Options
+
+| CDN | URL | Notes |
+|-----|-----|-------|
+| **jsDelivr** | `https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@latest/dist/vimeo-hls-player.js` | Recommended - Fast, reliable, free |
+| **unpkg** | `https://unpkg.com/vimeo-hls-player@1.0.0/dist/vimeo-hls-player.js` | Alternative (requires npm package) |
+| **GitHub Pages** | Self-hosted via GitHub Pages | Requires setup |
+
 ## Features
 
 - HLS streaming support using hls.js
 - Custom video controls (play, pause, volume, progress, fullscreen)
 - Native HLS support for Safari
-- Responsive design
 - Vimeo video integration
 - Auto-hide controls
 - Buffer visualization
@@ -19,16 +40,10 @@ A custom, lightweight video player for playing Vimeo videos in HLS format within
 
 ### 1. Include the Script
 
-Add the compiled JavaScript file to your Webflow project:
+Add the CDN script to your Webflow project (Project Settings > Custom Code):
 
 ```html
-<script src="https://your-cdn.com/vimeo-hls-player.js"></script>
-```
-
-Or use it locally during development:
-
-```html
-<script src="dist/vimeo-hls-player.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@latest/dist/vimeo-hls-player.js"></script>
 ```
 
 ### 2. Create a Container
@@ -167,15 +182,13 @@ Available events:
 
 ## Webflow Integration Guide
 
-### Step 1: Upload the Script
+### Step 1: Add the CDN Script
 
-1. Build the project: `npm run build`
-2. Upload `dist/vimeo-hls-player.js` to your hosting or CDN
-3. In Webflow, go to Project Settings > Custom Code
-4. Add the script in the "Head Code" or "Footer Code" section:
+1. In Webflow, go to Project Settings > Custom Code
+2. Add the script in the "Head Code" or "Footer Code" section:
 
 ```html
-<script src="https://your-cdn.com/vimeo-hls-player.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@latest/dist/vimeo-hls-player.js"></script>
 ```
 
 ### Step 2: Add Container in Webflow
@@ -294,6 +307,22 @@ The player comes with default styles, but you can customize them by overriding C
 }
 ```
 
+## Versioning
+
+For production use, it's recommended to use a specific version instead of `@latest`:
+
+```html
+<!-- Pin to a specific version -->
+<script src="https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@1.0.0/dist/vimeo-hls-player.js"></script>
+```
+
+To create a new version, tag your commit:
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
 ## Troubleshooting
 
 ### Video not loading
@@ -309,6 +338,11 @@ The player comes with default styles, but you can customize them by overriding C
 - Make sure `controls: true` is set in options
 - Check if CSS is loading properly
 - Hover over the video to reveal controls
+
+### CDN cache not updating
+- jsDelivr caches files for 7 days by default
+- Use a specific version tag instead of `@latest` for production
+- Or add a cache-busting query parameter: `?v=1.0.1`
 
 ## License
 
