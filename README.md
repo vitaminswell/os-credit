@@ -13,7 +13,7 @@ Add this script to your Webflow project:
 <script src="https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@latest/dist/vimeo-hls-player.js"></script>
 
 <!-- Specific version (recommended for production) -->
-<script src="https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@1.0.0/dist/vimeo-hls-player.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@1.1.0/dist/vimeo-hls-player.js"></script>
 ```
 
 ### CDN Options
@@ -21,7 +21,7 @@ Add this script to your Webflow project:
 | CDN | URL | Notes |
 |-----|-----|-------|
 | **jsDelivr** | `https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@latest/dist/vimeo-hls-player.js` | Recommended - Fast, reliable, free |
-| **unpkg** | `https://unpkg.com/vimeo-hls-player@1.0.0/dist/vimeo-hls-player.js` | Alternative (requires npm package) |
+| **unpkg** | `https://unpkg.com/vimeo-hls-player@1.1.0/dist/vimeo-hls-player.js` | Alternative (requires npm package) |
 | **GitHub Pages** | Self-hosted via GitHub Pages | Requires setup |
 
 ## Features
@@ -30,6 +30,7 @@ Add this script to your Webflow project:
 - Custom video controls (play, pause, volume, progress, fullscreen)
 - Native HLS support for Safari
 - Vimeo video integration
+- **Automatic poster image fetching from Vimeo** (new in v1.1.0)
 - Auto-hide controls
 - Buffer visualization
 - Keyboard shortcuts support
@@ -123,9 +124,23 @@ const player = new VimeoHLSPlayer('#video-player', {
 const player = new VimeoHLSPlayer('#video-player', {
   vimeoId: '76979871',
   aspectRatio: '21:9',  // Ultrawide
-  poster: 'https://example.com/poster.jpg'
+  poster: 'https://example.com/poster.jpg'  // Optional: custom poster (otherwise auto-fetched from Vimeo)
 });
 ```
+
+### Example 5: Automatic Poster Images (New in v1.1.0)
+
+The player now automatically fetches and displays the highest quality poster image from Vimeo:
+
+```javascript
+const player = new VimeoHLSPlayer('#video-player', {
+  vimeoId: '76979871',
+  controls: true
+  // No need to specify 'poster' - it will be automatically fetched from Vimeo!
+});
+```
+
+The player automatically selects the best available thumbnail quality (1280p, 960p, 640p, or base).
 
 ## Configuration Options
 
@@ -138,7 +153,7 @@ const player = new VimeoHLSPlayer('#video-player', {
 | `muted` | boolean | false | Start video muted |
 | `controls` | boolean | true | Show custom controls |
 | `aspectRatio` | string | '16:9' | Video aspect ratio (e.g., '16:9', '4:3', '21:9') |
-| `poster` | string | null | Poster image URL |
+| `poster` | string | null | Custom poster image URL (if not set, automatically fetched from Vimeo) |
 
 ## API Methods
 
@@ -313,14 +328,19 @@ For production use, it's recommended to use a specific version instead of `@late
 
 ```html
 <!-- Pin to a specific version -->
-<script src="https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@1.0.0/dist/vimeo-hls-player.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@1.1.0/dist/vimeo-hls-player.js"></script>
 ```
+
+### Version History
+
+- **v1.1.0** (Latest) - Added automatic Vimeo poster image fetching
+- **v1.0.0** - Initial release
 
 To create a new version, tag your commit:
 
 ```bash
-git tag v1.0.0
-git push origin v1.0.0
+git tag v1.1.0
+git push origin v1.1.0
 ```
 
 ## Troubleshooting
