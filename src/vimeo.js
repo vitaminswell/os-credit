@@ -75,10 +75,10 @@ export class VimeoAPI {
   }
 
   /**
-   * Get HLS URL directly from Vimeo's player config
+   * Get HLS URL and poster image directly from Vimeo's player config
    * This is a fallback method that extracts HLS from the embed player
    * @param {string} videoId - Vimeo video ID
-   * @returns {Promise<string>} HLS URL
+   * @returns {Promise<object>} Object containing hlsUrl and posterUrl
    */
   static async getHLSFromPlayer(videoId) {
     try {
@@ -92,8 +92,21 @@ export class VimeoAPI {
         const config = JSON.parse(configMatch[1]);
         const hlsUrl = config.request?.files?.hls?.cdns?.akfire_interconnect_quic?.url;
 
+        // Extract poster/thumbnail from video object
+        // Vimeo provides multiple sizes, we'll get the largest one
+        const thumbs = config.video?.thumbs;
+        let posterUrl = null;
+
+        if (thumbs) {
+          // Try to get the highest quality thumbnail
+          posterUrl = thumbs['1280'] || thumbs['960'] || thumbs['640'] || thumbs.base;
+        }
+
         if (hlsUrl) {
-          return hlsUrl;
+          return {
+            hlsUrl,
+            posterUrl
+          };
         }
       }
 

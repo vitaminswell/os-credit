@@ -125,8 +125,14 @@ class VimeoHLSPlayer {
 
       // Try to get HLS URL from player config (works for public videos)
       try {
-        const hlsUrl = await VimeoAPI.getHLSFromPlayer(videoId);
-        await this.loadHLS(hlsUrl);
+        const videoData = await VimeoAPI.getHLSFromPlayer(videoId);
+
+        // Set poster image if available and not already set
+        if (videoData.posterUrl && !this.options.poster) {
+          this.videoElement.poster = videoData.posterUrl;
+        }
+
+        await this.loadHLS(videoData.hlsUrl);
         this.container.classList.remove('loading');
         return;
       } catch (error) {
@@ -136,6 +142,11 @@ class VimeoHLSPlayer {
       // Fallback to API (requires access token for private videos)
       if (accessToken) {
         const videoData = await VimeoAPI.getVideoData(videoId, accessToken);
+
+        // Set poster image if available and not already set
+        if (videoData.thumbnail && !this.options.poster) {
+          this.videoElement.poster = videoData.thumbnail;
+        }
 
         if (videoData.hlsUrl) {
           await this.loadHLS(videoData.hlsUrl);
