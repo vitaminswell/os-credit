@@ -4,7 +4,7 @@
   position: relative;
   width: 100%;
   background: #000;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+ font-family: ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Menlo, Consolas, 'Liberation Mono', 'Courier New', monospace;
   overflow: hidden;
 }
 
@@ -91,7 +91,7 @@
 /* Progress Bar */
 .vimeo-hls-progress-container {
   width: 100%;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0rem;
   position: relative;
 }
 
@@ -99,9 +99,8 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  height: 4px;
+  height: 0.1875rem;
   background: rgba(255, 255, 255, 0.3);
-  border-radius: 2px;
   width: 0%;
   transition: width 0.3s ease;
 }
