@@ -57,8 +57,8 @@
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 1);
-  border: none;
+  background: rgba(0, 0, 0, 0);
+  border: 1px solid rgba(255,255,255,0);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -67,14 +67,15 @@
 }
 
 .vimeo-hls-play-large:hover {
-  background: rgba(255, 255, 255, 1);
+  background: rgba(0, 0, 0, 0);
   transform: scale(1.05);
+  border: 1px solid rgba(255,255,255,1);
 }
 
 .vimeo-hls-play-large svg {
   width: 2rem;
   height: 2rem;
-  color: #000;
+  color: #fff;
   margin-left: 0.25rem;
 }
 
