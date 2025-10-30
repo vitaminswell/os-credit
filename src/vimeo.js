@@ -75,8 +75,33 @@ export class VimeoAPI {
   }
 
   /**
+   * Get poster image from Vimeo using oEmbed API (CORS-friendly, no token required)
+   * @param {string} videoId - Vimeo video ID
+   * @returns {Promise<string|null>} Poster URL or null
+   */
+  static async getPosterFromOEmbed(videoId) {
+    try {
+      const oembedUrl = `https://vimeo.com/api/oembed.json?url=https://vimeo.com/${videoId}`;
+      const response = await fetch(oembedUrl);
+
+      if (!response.ok) {
+        throw new Error(`oEmbed API returned ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      // Return the thumbnail URL (Vimeo provides this in oEmbed)
+      return data.thumbnail_url || null;
+    } catch (error) {
+      console.warn('Could not fetch poster from oEmbed:', error);
+      return null;
+    }
+  }
+
+  /**
    * Get HLS URL and poster image directly from Vimeo's player config
-   * This is a fallback method that extracts HLS from the embed player
+   * Note: This method is blocked by CORS in browsers and requires server-side implementation
+   * or a Vimeo access token. Use getPosterFromOEmbed() for CORS-friendly poster fetching.
    * @param {string} videoId - Vimeo video ID
    * @returns {Promise<object>} Object containing hlsUrl and posterUrl
    */
@@ -112,6 +137,10 @@ export class VimeoAPI {
 
       throw new Error('Could not extract HLS URL from player');
     } catch (error) {
+      // Check if it's a CORS error
+      if (error.message.includes('fetch') || error.name === 'TypeError') {
+        throw new Error('CORS_ERROR: Cannot fetch from Vimeo player directly in browser. Please use vimeoAccessToken option or implement server-side proxy.');
+      }
       console.error('Error getting HLS from player:', error);
       throw error;
     }

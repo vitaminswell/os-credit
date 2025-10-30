@@ -123,11 +123,19 @@ class VimeoHLSPlayer {
       // Extract video ID if URL provided
       const videoId = VimeoAPI.extractVideoId(vimeoId) || vimeoId;
 
-      // Try to get HLS URL from player config (works for public videos)
+      // Always try to get poster from oEmbed first (CORS-friendly, no token required)
+      if (!this.options.poster) {
+        const posterUrl = await VimeoAPI.getPosterFromOEmbed(videoId);
+        if (posterUrl) {
+          this.videoElement.poster = posterUrl;
+        }
+      }
+
+      // Try to get HLS URL from player config (may be blocked by CORS in browsers)
       try {
         const videoData = await VimeoAPI.getHLSFromPlayer(videoId);
 
-        // Set poster image if available and not already set
+        // Update poster if we got a higher quality one
         if (videoData.posterUrl && !this.options.poster) {
           this.videoElement.poster = videoData.posterUrl;
         }
@@ -136,14 +144,23 @@ class VimeoHLSPlayer {
         this.container.classList.remove('loading');
         return;
       } catch (error) {
-        console.log('Could not get HLS from player, trying API...');
+        // Check if it's a CORS error
+        if (error.message.includes('CORS_ERROR')) {
+          console.log('CORS blocked direct player access. Trying Vimeo API with access token...');
+
+          if (!accessToken) {
+            throw new Error('A Vimeo access token is required to load HLS streams. Please provide vimeoAccessToken option. Visit https://developer.vimeo.com/apps to create one.');
+          }
+        } else {
+          console.log('Could not get HLS from player, trying API...', error.message);
+        }
       }
 
-      // Fallback to API (requires access token for private videos)
+      // Fallback to API (requires access token)
       if (accessToken) {
         const videoData = await VimeoAPI.getVideoData(videoId, accessToken);
 
-        // Set poster image if available and not already set
+        // Update poster from API if we got one
         if (videoData.thumbnail && !this.options.poster) {
           this.videoElement.poster = videoData.thumbnail;
         }
@@ -154,7 +171,7 @@ class VimeoHLSPlayer {
           throw new Error('No HLS stream available for this video');
         }
       } else {
-        throw new Error('Could not load video. For private videos, provide a Vimeo access token.');
+        throw new Error('A Vimeo access token is required. Please add vimeoAccessToken option to your player configuration. Get one at https://developer.vimeo.com/apps');
       }
 
       this.container.classList.remove('loading');
