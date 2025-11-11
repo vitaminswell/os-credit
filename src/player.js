@@ -6,6 +6,7 @@ import Hls from 'hls.js';
 export class HLSPlayer {
   constructor(videoElement, options = {}) {
     this.video = videoElement;
+    this.container = options.container || null;
     this.hls = null;
     this.options = {
       autoplay: false,
@@ -201,14 +202,15 @@ export class HLSPlayer {
    * Enter fullscreen
    */
   enterFullscreen() {
-    if (this.video.requestFullscreen) {
-      this.video.requestFullscreen();
-    } else if (this.video.webkitRequestFullscreen) {
-      this.video.webkitRequestFullscreen();
-    } else if (this.video.mozRequestFullScreen) {
-      this.video.mozRequestFullScreen();
-    } else if (this.video.msRequestFullscreen) {
-      this.video.msRequestFullscreen();
+    const element = this.container || this.video;
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.webkitRequestFullscreen) {
+      element.webkitRequestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+      element.mozRequestFullScreen();
+    } else if (element.msRequestFullscreen) {
+      element.msRequestFullscreen();
     }
   }
 

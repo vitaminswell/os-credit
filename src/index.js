@@ -44,7 +44,8 @@ class VimeoHLSPlayer {
     this.player = new HLSPlayer(this.videoElement, {
       autoplay: this.options.autoplay,
       muted: this.options.muted,
-      controls: false
+      controls: false,
+      container: this.container
     });
 
     // Add custom controls if enabled
