@@ -10,17 +10,17 @@ Add this script to your Webflow project:
 
 ```html
 <!-- Latest version -->
-<script src="https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@latest/dist/vimeo-hls-player.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/vitaminswell/vimeo-hls-player@latest/dist/vimeo-hls-player.js"></script>
 
 <!-- Specific version (recommended for production) -->
-<script src="https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@1.1.0/dist/vimeo-hls-player.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/vitaminswell/vimeo-hls-player@1.1.0/dist/vimeo-hls-player.js"></script>
 ```
 
 ### CDN Options
 
 | CDN | URL | Notes |
 |-----|-----|-------|
-| **jsDelivr** | `https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@latest/dist/vimeo-hls-player.js` | Recommended - Fast, reliable, free |
+| **jsDelivr** | `https://cdn.jsdelivr.net/gh/vitaminswell/vimeo-hls-player@latest/dist/vimeo-hls-player.js` | Recommended - Fast, reliable, free |
 | **unpkg** | `https://unpkg.com/vimeo-hls-player@1.1.0/dist/vimeo-hls-player.js` | Alternative (requires npm package) |
 | **GitHub Pages** | Self-hosted via GitHub Pages | Requires setup |
 
@@ -44,7 +44,7 @@ Add this script to your Webflow project:
 Add the CDN script to your Webflow project (Project Settings > Custom Code):
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@latest/dist/vimeo-hls-player.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/vitaminswell/vimeo-hls-player@latest/dist/vimeo-hls-player.js"></script>
 ```
 
 ### 2. Create a Container
@@ -203,7 +203,7 @@ Available events:
 2. Add the script in the "Head Code" or "Footer Code" section:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@latest/dist/vimeo-hls-player.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/vitaminswell/vimeo-hls-player@latest/dist/vimeo-hls-player.js"></script>
 ```
 
 ### Step 2: Add Container in Webflow
@@ -328,7 +328,7 @@ For production use, it's recommended to use a specific version instead of `@late
 
 ```html
 <!-- Pin to a specific version -->
-<script src="https://cdn.jsdelivr.net/gh/vitaminswell/os-credit@1.1.0/dist/vimeo-hls-player.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/vitaminswell/vimeo-hls-player@1.1.0/dist/vimeo-hls-player.js"></script>
 ```
 
 ### Version History
